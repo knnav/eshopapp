@@ -10,7 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_28_144145) do
+ActiveRecord::Schema.define(version: 2020_01_28_185907) do
+
+  create_table "cart_products", force: :cascade do |t|
+    t.integer "product_id"
+    t.integer "cart_id"
+    t.integer "quantity", default: 1
+    t.index ["cart_id"], name: "index_cart_products_on_cart_id"
+    t.index ["product_id"], name: "index_cart_products_on_product_id"
+  end
+
+  create_table "carts", force: :cascade do |t|
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_carts_on_user_id"
+  end
 
   create_table "products", force: :cascade do |t|
     t.string "name"
@@ -27,6 +42,7 @@ ActiveRecord::Schema.define(version: 2020_01_28_144145) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "admin", default: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
