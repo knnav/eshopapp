@@ -1,0 +1,20 @@
+.container.row.center
+  %h1.col.s12.m12.l12 New Product
+.row
+  .container
+    = form_with(model: @product, method: :post) do |f|
+      .input-field.col.s6
+        = f.label :name
+        = f.text_field :name
+      .input-field.col.s6
+        = f.label :price
+        = f.number_field :price, step: :any      
+      .input-field.col.s12
+        = f.label :description
+        .materialize-textarea= f.text_area :description
+      .input-field.col.s12
+        .switch
+          %label
+            = f.check_box :active, class: "filled-in"
+            %span Activo?
+      = f.button "Save", url: new_product_path, method: :post, class: "btn waves-effect waves-light"

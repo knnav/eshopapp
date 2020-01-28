@@ -1,0 +1,13 @@
+.container.row.center
+  %h1.col.s12.m12.l12 All products
+.row
+  - @products.each do |p|
+    .col.s4.m7.l3
+      .card
+        .card-image
+          = image_tag "placehoolder.png"
+          %span.card-title= p.name
+        .card-content
+          %p= p.description
+        .card-action
+          %a $ #{p.price}
