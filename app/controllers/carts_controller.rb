@@ -2,10 +2,8 @@ class CartsController < ApplicationController
   before_action :set_cart
 
   def show
-    @cart_products = @cart.products.distinct.to_a
-    respond_to do |format|
-      format.json
-    end
+    @cart_products = @cart.get_products_with_quantity_and_price
+    #maybe total price should've been an attribute of the cart itself
   end
 
   def edit
@@ -13,19 +11,11 @@ class CartsController < ApplicationController
   end
 
   def add_to_cart
-    product = Product.find(params[:product_id])
-    @cart.products << product
-    cart_product = get_cart_product_by_id(params[:product_id])
-    cart_product[:quantity] += 1
-    if cart_product.save
+    cart_product = @cart.add_to_cart(params[:product_id])
+    if cart_product
       respond_to do |format|
         format.json {}
       end
-    end
+    end #here should be an else branch returning a 500
   end
-
-  private
-    def get_cart_product_by_id(product_id)
-      @cart.cart_products.where(product_id: product_id).first
-    end
 end

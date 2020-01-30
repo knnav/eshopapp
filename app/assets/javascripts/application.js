@@ -27,6 +27,7 @@ document.addEventListener('turbolinks:load', function() {
   var populateCart;
   var instances = M.Modal.init(elems);
 
+  
   //this is just a placeholder, but it does the job for now...
   function createProdDiv(product){
     var code = "<div class=\"product\">\
@@ -54,6 +55,7 @@ document.addEventListener('turbolinks:load', function() {
     });
   });
 
+
   //trigger for add to cart buttons
   addToCartBtn.on('click', function(){
     var url = 'add_to_cart/' + $(this).data('pid')
@@ -61,6 +63,8 @@ document.addEventListener('turbolinks:load', function() {
       url: url
     });
   });
+
+
   function clearCart(cart){
     cart.empty();
   };
