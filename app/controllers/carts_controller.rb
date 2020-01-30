@@ -2,7 +2,7 @@ class CartsController < ApplicationController
   before_action :set_cart
 
   def show
-    @cart_products = @cart.products.to_a
+    @cart_products = @cart.products.distinct.to_a
     respond_to do |format|
       format.json
     end
