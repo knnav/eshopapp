@@ -11,3 +11,5 @@
           %p= p.description
         .card-action
           %a $ #{p.price}
+        .card-action
+          %a.add-to-cart= link_to "Add to cart", add_to_cart_url(product_id: p.id), remote: true, "data-pid" => p.id
