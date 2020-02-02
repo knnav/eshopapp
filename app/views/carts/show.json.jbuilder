@@ -4,10 +4,13 @@
 #  json.quantity 1
 #  json.cart_id @cart.id
 #end
-
-json.array! @cart_products.each do |product|
+json.products @cart_products.each do |product|
   json.name product.name
   json.price product.price
+  json.total_price product.total
   json.quantity product.quantity
   json.cart_id @cart.id
 end
+json.total_price @cart.total_price
+
+

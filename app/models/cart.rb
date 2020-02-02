@@ -20,12 +20,12 @@ class Cart < ApplicationRecord
 
   #Calculates the sum of the prices of the Products of a specific Cart instance
   #
-  def total_price(cart_products)
-    total = 0
-    cart_products.each do |cart_product|
-      total += cart_product.total
+  def update_total_price(cart_products)
+    self.total_price = 0
+    cart_products.each do |product|
+      self.total_price += product.total
     end
-    total
+    self.save
   end
 
   def get_products_with_quantity_and_price

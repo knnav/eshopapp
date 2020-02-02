@@ -26,6 +26,7 @@ document.addEventListener('turbolinks:load', function() {
   var cartContent = $("#cart-content");
   var populateCart;
   var instances = M.Modal.init(elems);
+  var totalPriceTag = $('.total');
 
   
   //this is just a placeholder, but it does the job for now...
@@ -35,6 +36,11 @@ document.addEventListener('turbolinks:load', function() {
     </div>";
     return code;
   };
+
+  function updateTotalPrice(newPrice){
+    var priceText = "TOTAL: $"
+    totalPriceTag.text(priceText + newPrice);
+  }
 
   function populateCart(cartProducts){
     //for some reason this won't work with a for each loop
@@ -50,8 +56,11 @@ document.addEventListener('turbolinks:load', function() {
     $.ajax({
       url: '/mycart'
     }).done(function(results){
+      var total = results.total_price;
+      var products = results.products;
       clearCart(cartContent);
-      populateCart(results);
+      populateCart(products);
+      updateTotalPrice(total);
     });
   });
 

@@ -3,7 +3,7 @@ class CartsController < ApplicationController
 
   def show
     @cart_products = @cart.get_products_with_quantity_and_price
-    #maybe total price should've been an attribute of the cart itself
+    @cart.update_total_price(@cart_products)
   end
 
   def edit
