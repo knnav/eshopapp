@@ -45,7 +45,7 @@ document.addEventListener('turbolinks:load', function() {
   }
 
   //fills the cart contents div with the items brought by the API
-  const populateCart = (cartProducts)=> cartProducts.forEach(el => $("#cart-content").append(createProdDiv(el)));
+  const populateCart = (cartProducts)=> cartProducts.forEach(el => cartContent.append(createProdDiv(el)));
 
   //clears the cart contents div (mostly for cleanup purposes)
   const clearCart = (cart)=> cart.empty();
